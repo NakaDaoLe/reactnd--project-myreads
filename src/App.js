@@ -4,6 +4,7 @@ import './App.css'
 import SearchBook from './components/SearchBook'
 import BookShelf from './components/BookShelf'
 import OpenSearch from './components/OpenSearch'
+import {Route} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -19,21 +20,24 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchBook />
-        ) : (
+
+        <Route exact path='/' render={()=>(
           <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <BookShelf />
-              <BookShelf />
-              <BookShelf />
-            </div>
-            <OpenSearch />
+          <div className="list-books-title">
+            <h1>MyReads</h1>
           </div>
-        )}
+          <div className="list-books-content">
+            <BookShelf />
+            <BookShelf />
+            <BookShelf />
+          </div>
+          <OpenSearch />
+        </div>
+        )}/>
+
+        <Route exact path='/search' render={()=>(
+          <SearchBook />
+        )}/>
       </div>
     )
   }
