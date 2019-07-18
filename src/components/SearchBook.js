@@ -6,7 +6,8 @@ import Book from './Book'
 class SearchBook extends Component{
   state={
     query:'',
-    books:[]
+    books:[],
+    loading:false
   }
 
   handleInputChange = (e) =>{
@@ -16,7 +17,9 @@ class SearchBook extends Component{
 
   searchQuery = async (query) =>{
     let result = '';
+    this.setState({loading:true})
     let resonse = await BooksAPI.search(this.state.query);
+    this.setState({loading:false})
     if(resonse===undefined){
       result = 'not found';
     }else if(resonse.error){
@@ -29,6 +32,7 @@ class SearchBook extends Component{
   }
 
   render(){
+      const {books,loading} = this.state
       return(
           <div className="search-books">
           <div className="search-books-bar">
@@ -45,16 +49,22 @@ class SearchBook extends Component{
           <div className="search-books-results">
             <ol className="books-grid">
 
-              {this.state.books !== 'not found' && (
-                this.state.books.map((book,index)=>(
+              {books !== 'not found' && (
+                books.map((book,index)=>(
                   <li key={index}>
                     <Book name={book.title} author={book.authors} backgroundImageURL={book.imageLinks.smallThumbnail}/>
                   </li>
               ))
               )}
 
-              {this.state.books === 'not found' && (
+              {books === 'not found' && (
                 <div>Not found</div>
+              )}
+
+              {loading && (
+                  <div className="results-loading">
+                    loading...
+                  </div>
               )}
             </ol>
           </div>
