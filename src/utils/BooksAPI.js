@@ -34,7 +34,7 @@ export const update = async(book,shelf) => {
     },
     body:JSON.stringify({shelf})
     });
-  return res.json();
+  return await res.json();
 }
 
 export const search = async(query) =>{
@@ -46,6 +46,6 @@ export const search = async(query) =>{
     },
     body: JSON.stringify({ query })
   });
-  let data = res.json();
+  let data = await res.json();
   return data.books;
 }

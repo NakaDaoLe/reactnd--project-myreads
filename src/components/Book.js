@@ -27,4 +27,10 @@ class Book extends Component{
   }
 }
 
+Book.defaultProps = {
+  name:'name',
+  author:'author',
+  backgroundImageURL:''
+}
+
 export default Book
