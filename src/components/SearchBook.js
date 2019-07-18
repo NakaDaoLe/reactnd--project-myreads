@@ -27,49 +27,48 @@ class SearchBook extends Component{
     }else{
       result = resonse;
     }
-    this.setState({books:result}); 
-    console.log(this.state.books)
+    this.setState({books:result});
   }
 
   render(){
-      const {books,loading} = this.state
-      return(
-          <div className="search-books">
-          <div className="search-books-bar">
-            <Link className="close-search" to='/' >Close</Link>
-            <div className="search-books-input-wrapper">
-              <input
-                type="text"
-                placeholder="Search by title or author"
-                onChange={this.handleInputChange}
-              />
+    const {books,loading} = this.state
+    return(
+        <div className="search-books">
+        <div className="search-books-bar">
+          <Link className="close-search" to='/' >Close</Link>
+          <div className="search-books-input-wrapper">
+            <input
+              type="text"
+              placeholder="Search by title or author"
+              onChange={this.handleInputChange}
+            />
 
-            </div>
-          </div>
-          <div className="search-books-results">
-            <ol className="books-grid">
-
-              {books !== 'not found' && (
-                books.map((book,index)=>(
-                  <li key={index}>
-                    <Book name={book.title} author={book.authors} backgroundImageURL={book.imageLinks.smallThumbnail}/>
-                  </li>
-              ))
-              )}
-
-              {books === 'not found' && (
-                <div>Not found</div>
-              )}
-
-              {loading && (
-                  <div className="results-loading">
-                    loading...
-                  </div>
-              )}
-            </ol>
           </div>
         </div>
-      )
+        <div className="search-books-results">
+          <ol className="books-grid">
+
+            {books !== 'not found' && (
+              books.map((book,index)=>(
+                <li key={index}>
+                  <Book name={book.title} author={book.authors} backgroundImageURL={book.imageLinks.smallThumbnail}/>
+                </li>
+            ))
+            )}
+
+            {loading && (
+                <div className="results-loading">
+                  loading...
+                </div>
+            )}
+
+            {books === 'not found'&& !loading && (
+              <div>Not found</div>
+            )}
+          </ol>
+        </div>
+      </div>
+    )
   }
 }
 
