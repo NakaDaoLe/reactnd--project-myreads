@@ -27,9 +27,9 @@ class BooksApp extends React.Component {
             <h1>MyReads</h1>
           </div>
           <div className="list-books-content">
-            <BookShelf />
-            <BookShelf />
-            <BookShelf />
+            <BookShelf shelfType='0'/>
+            <BookShelf shelfType='1'/>
+            <BookShelf shelfType='2'/>
           </div>
           <OpenSearch />
         </div>
