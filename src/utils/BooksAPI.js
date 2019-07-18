@@ -13,33 +13,39 @@ const headers = {
   'Authorization': token
 }
 
-export const get = (bookId) =>
-  fetch(`${api}/books/${bookId}`, { headers })
-    .then(res => res.json())
-    .then(data => data.book)
+export const get = async (bookId) => {
+  let res = await fetch(`${api}/books/${bookId}`,{headers});
+  let data = await res.json();
+  return data.books;
+}
 
-export const getAll = () =>
-  fetch(`${api}/books`, { headers })
-    .then(res => res.json())
-    .then(data => data.books)
+export const getAll = async () => {
+  let res = await fetch(`${api}/books`,{headers});
+  let data = await res.json();
+  return data.books;
+}
 
-export const update = (book, shelf) =>
-  fetch(`${api}/books/${book.id}`, {
+export const update = async(book,shelf) => {
+  let res = await fetch(`${api}/books/${book.id}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ shelf })
-  }).then(res => res.json())
+    body:JSON.stringify({shelf})
+    });
+  return res.json();
+}
 
-export const search = (query) =>
-  fetch(`${api}/search`, {
+export const search = async(query) =>{
+  let res = await fetch(`${api}/search`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ query })
-  }).then(res => res.json())
-    .then(data => data.books)
+  });
+  let data = res.json();
+  return data.books;
+}
