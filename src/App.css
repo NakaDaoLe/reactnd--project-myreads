@@ -66,6 +66,7 @@ body, .app {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
   outline: 0;
+  cursor: pointer;
 }
 
 .open-search button:hover {
@@ -140,6 +141,7 @@ button:active {
 
 .book {
   width: 140px;
+  cursor: pointer;
 }
 
 .book-title,
@@ -188,6 +190,12 @@ button:active {
 
 .book-cover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: box-shadow .15s ease;
+  background: #eee;
+}
+
+.book-cover:hover {
+  box-shadow: 0 37.125px 70px -12.125px rgba(0,0,0,0.3);
   background: #eee;
 }
 
