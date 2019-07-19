@@ -16,7 +16,7 @@ class Book extends Component{
         <div className="book">
           
           <div className="book-top">
-            <Link to={`/${id}`}>
+            <Link to={`/book/${id}`}>
               <div className="book-cover" style={
                 { width,
                   height,
@@ -26,7 +26,7 @@ class Book extends Component{
             </Link>
             <ChangeButton />
           </div>
-          <Link to={`/${id}`}>
+          <Link to={`/book/${id}`}>
             <div className="book-title">{name}</div>
           </Link>
           <div className="book-authors">{author}</div>
