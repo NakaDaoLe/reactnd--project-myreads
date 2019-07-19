@@ -14,17 +14,22 @@ class Book extends Component{
 
       return(
         <div className="book">
-          <Link to={`/${id}`}>
+          
           <div className="book-top">
-            <div className="book-cover" style={
-              { width,
-                height,
-                backgroundImage: `url(${backgroundImageURL})` }}></div>
+            <Link to={`/${id}`}>
+              <div className="book-cover" style={
+                { width,
+                  height,
+                  backgroundImage: `url(${backgroundImageURL})` }}>
+              </div>
+              
+            </Link>
             <ChangeButton />
           </div>
-          <div className="book-title">{name}</div>
-        </Link>
-        <div className="book-authors">{author}</div>
+          <Link to={`/${id}`}>
+            <div className="book-title">{name}</div>
+          </Link>
+          <div className="book-authors">{author}</div>
         </div>
       )
   }
