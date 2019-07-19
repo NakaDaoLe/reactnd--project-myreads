@@ -1,19 +1,33 @@
 import React,{ Component } from 'react'
+import * as BooksAPI from '../utils/BooksAPI'
 
 class ChangeButton extends Component{
-    render(){
-        return(
-            <div className="book-shelf-changer">
-            <select>
-              <option value="move" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
-        )
-    }
+
+  handleChange = (e)=> {
+    this.props.onUpdateBook(this.props.bookId,e.target.value);
+  }
+
+  render(){
+      let {shelf}=this.props;
+
+      return(
+          <div className="book-shelf-changer">
+          <select value='move' onChange={this.handleChange}>
+            <option value="move" disabled>Move to...</option>
+            {shelf!=='currentlyReading'&&(<option value="currentlyReading">Currently Reading</option>)}
+            {shelf!=='wantToRead'&&(<option value="wantToRead">Want to Read</option>)}
+            {shelf!=='read'&&(<option value="read">Read</option>)}
+            {shelf!=='none'&&(<option value="none">None</option>)}
+          </select>
+        </div>
+      )
+  }
+}
+
+ChangeButton.defaultProps={
+  bookId:'',
+  shelf:'',
+  onUpdateBook:()=>{}
 }
 
 export default ChangeButton
