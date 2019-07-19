@@ -7,7 +7,14 @@ class Shelfs extends Component{
     state={
         books:[],
         shelfs:['currentlyReading','wantToRead','read']
-      }
+    }
+
+    onUpdateBook = async (bookId,shelf) => {
+        let res = await BooksAPI.update(bookId,shelf);
+        console.log(res);
+        let books = await BooksAPI.getAll();
+        this.setState({books})
+    }
     
     componentDidMount = async()=>{
         let books = await BooksAPI.getAll();

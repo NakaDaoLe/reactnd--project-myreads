@@ -1,6 +1,5 @@
 import React,{ Component } from 'react'
 import ChangeButton from './ChangeButton'
-import {Link} from 'react-router-dom'
 
 class Book extends Component{
   state={
@@ -16,19 +15,14 @@ class Book extends Component{
         <div className="book">
           
           <div className="book-top">
-            <Link to={`/book/${id}`}>
               <div className="book-cover" style={
                 { width,
                   height,
                   backgroundImage: `url(${backgroundImageURL})` }}>
               </div>
-              
-            </Link>
             <ChangeButton onUpdateBook={this.props.onUpdateBook} bookId={id} shelf={shelf}/>
           </div>
-          <Link to={`/book/${id}`}>
-            <div className="book-title">{name}</div>
-          </Link>
+          <div className="book-title">{name}</div>
           <div className="book-authors">{author}</div>
         </div>
       )
