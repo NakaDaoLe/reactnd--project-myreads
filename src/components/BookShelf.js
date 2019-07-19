@@ -10,7 +10,6 @@ class BookShlef extends Component{
   async componentDidMount(){
     let books = await BooksAPI.getAll();
     this.setState({books:books.filter(book=>this.isMatchCurrentShelf(book))})
-    console.log(this.state.books);
   }
 
   renderShelfName = (shelfType)=>{
@@ -45,7 +44,7 @@ class BookShlef extends Component{
             <ol className="books-grid">
               {this.state.books.map((book,index)=>(
                 <li key={index}>
-                  <Book name={book.title} author={book.authors} backgroundImageURL={book.imageLinks.smallThumbnail}/>
+                  <Book id={book.id} name={book.title} author={book.authors} backgroundImageURL={book.imageLinks.smallThumbnail}/>
                 </li>
               ))}
             </ol>

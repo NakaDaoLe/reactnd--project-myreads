@@ -1,5 +1,6 @@
 import React,{ Component } from 'react'
 import ChangeButton from './ChangeButton'
+import {Link} from 'react-router-dom'
 
 class Book extends Component{
   state={
@@ -9,10 +10,11 @@ class Book extends Component{
 
   render(){
       const {width,height} = this.state;
-      const {name,author,backgroundImageURL} = this.props;
+      const {name,author,backgroundImageURL,id} = this.props;
 
       return(
-          <div className="book">
+        <div className="book">
+          <Link to={`/${id}`}>
           <div className="book-top">
             <div className="book-cover" style={
               { width,
@@ -21,7 +23,8 @@ class Book extends Component{
             <ChangeButton />
           </div>
           <div className="book-title">{name}</div>
-          <div className="book-authors">{author}</div>
+        </Link>
+        <div className="book-authors">{author}</div>
         </div>
       )
   }
@@ -30,7 +33,8 @@ class Book extends Component{
 Book.defaultProps = {
   name:'name',
   author:'author',
-  backgroundImageURL:''
+  backgroundImageURL:'',
+  id:'0'
 }
 
 export default Book

@@ -26,6 +26,7 @@ class SearchBook extends Component{
       result = 'not found';
     }else{
       result = resonse;
+      console.log(result);
     }
     this.setState({books:result});
   }
@@ -51,7 +52,7 @@ class SearchBook extends Component{
             {books !== 'not found' && (
               books.map((book,index)=>(
                 <li key={index}>
-                  <Book name={book.title} author={book.authors} backgroundImageURL={book.imageLinks.smallThumbnail}/>
+                  <Book id={book.id} name={book.title} author={book.authors} backgroundImageURL={book.imageLinks.smallThumbnail}/>
                 </li>
             ))
             )}
